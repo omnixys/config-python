@@ -1,0 +1,43 @@
+[project]
+name = "omnixys-config"
+dynamic = ["version"]
+description = "Omnixys unified configuration package (pydantic-settings)"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.14"
+dependencies = [
+  "pydantic-settings==2.14.1",
+  "pydantic==2.13.4",
+]
+
+authors = [
+  {name = "Omnixys Team", email = "team@omnixys.com"},
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/omnixys_config/__init__.py"
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+  "ANN101", "ANN401", "S101",
+  "T20", "FBT", "D", "INP001",
+]
+
+[tool.mypy]
+strict = true
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.0",
+    "ruff>=0.15.21",
+]
