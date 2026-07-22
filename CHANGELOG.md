@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/omnixys/config-python/compare/v2.0.1...v2.0.2) (2026-07-22)
+
+
+### Bug Fixes
+
+* **release:** add @semantic-release/exec to update __version__ in __init__.py ([22ac2c4](https://github.com/omnixys/config-python/commit/22ac2c4bc6e3876a6e53232e7b087e4a8ee84352))
+
 ## [2.0.1](https://github.com/omnixys/config-python/compare/v2.0.0...v2.0.1) (2026-07-22)
 
 
