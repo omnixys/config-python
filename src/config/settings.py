@@ -132,6 +132,8 @@ class ObservabilitySettings(BaseSettings):
     prometheus_enabled: bool = True
     otlp_endpoint: str = "http://localhost:4318"
     otlp_transport: str = "http"
+    tempo_health_url: str = ""
+    prometheus_health_url: str = ""
 
 
 class StorageSettings(BaseSettings):
