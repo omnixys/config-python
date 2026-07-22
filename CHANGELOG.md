@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/omnixys/config-python/compare/v2.0.2...v2.0.3) (2026-07-22)
+
+
+### Bug Fixes
+
+* **publish:** replace gh release upload with uv publish to PyPI ([d014c76](https://github.com/omnixys/config-python/commit/d014c7640fe65a4dc43958488a042cffde285f7d))
+
 ## [2.0.2](https://github.com/omnixys/config-python/compare/v2.0.1...v2.0.2) (2026-07-22)
 
 
