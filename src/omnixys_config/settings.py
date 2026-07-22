@@ -168,6 +168,7 @@ class AppSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
     core: CoreSettings = CoreSettings()
     database: DatabaseSettings = DatabaseSettings()
+    hot_reload: bool = False
     keycloak: KeycloakConfig = KeycloakConfig()
     security: SecuritySettings = SecuritySettings()
     kafka: KafkaSettings = KafkaSettings()
