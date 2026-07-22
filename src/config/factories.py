@@ -3,7 +3,7 @@ from __future__ import annotations
 # ruff: noqa: D100, D103
 from functools import lru_cache
 
-from omnixys_config.settings import AppSettings
+from config.settings import AppSettings
 
 
 @lru_cache(maxsize=1)

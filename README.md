@@ -17,7 +17,7 @@ pip install omnixys-config
 ## Usage
 
 ```python
-from omnixys_config import AppSettings, CoreSettings, get_settings, load_settings
+from config import AppSettings, CoreSettings, get_settings, load_settings
 ```
 
 ## License

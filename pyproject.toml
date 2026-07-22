@@ -28,10 +28,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "src/omnixys_config/__init__.py"
+path = "src/config/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/omnixys_config"]
+packages = ["src/config"]
 
 [dependency-groups]
 dev = [
