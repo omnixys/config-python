@@ -1,15 +1,19 @@
 from __future__ import annotations
 
 # ruff: noqa: D100, D103
-from functools import lru_cache
+from typing import TYPE_CHECKING
 
 from config.settings import AppSettings
 
+if TYPE_CHECKING:
+    from pathlib import Path
 
-@lru_cache(maxsize=1)
-def load_settings() -> AppSettings:
+
+def load_settings(env_file: str | Path | None = None) -> AppSettings:
+    if env_file is not None:
+        return AppSettings(_env_file=str(env_file))
     return AppSettings()
 
 
-def get_settings() -> AppSettings:
-    return load_settings()
+def get_settings(env_file: str | Path | None = None) -> AppSettings:
+    return load_settings(env_file)
