@@ -17,7 +17,7 @@ class DatabaseSettings(BaseSettings):
 class KeycloakConfig(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="keycloak_")
     url: str = "http://localhost:8080"
-    realm: str = "omnixys"
+    realm: str = "omnixysu"
     audience: str = "account"
     client_id: str = "omnixys-backend"
     client_secret: str = ""
@@ -109,6 +109,7 @@ class KafkaSettings(BaseSettings):
 class CacheSettings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="cache_")
     url: str = "redis://localhost:6379/0"
+    password: str = ""
     key_prefix: str = "omnixys:"
     invalidation_enabled: bool = True
     invalidation_channel: str = "omnixys:cache:invalidate"
