@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/omnixys/config-python/compare/v2.0.3...v2.0.4) (2026-07-22)
+
+
+### Bug Fixes
+
+* **publish:** add uv build before uv publish ([d431275](https://github.com/omnixys/config-python/commit/d4312758e8f20a2a6fca4494dc035650b5ffd6d0))
+
 ## [2.0.3](https://github.com/omnixys/config-python/compare/v2.0.2...v2.0.3) (2026-07-22)
 
 
