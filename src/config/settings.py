@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 # ruff: noqa: D100, D101, D102, S104, S105
+import os
+from typing import Any
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -176,3 +179,16 @@ class AppSettings(BaseSettings):
     cache: CacheSettings = CacheSettings()
     observability: ObservabilitySettings = ObservabilitySettings()
     storage: StorageSettings = StorageSettings()
+
+    def _load_env_vars(self) -> dict[str, Any]:
+        """Load .env and propagate values to os.environ for nested BaseSettings.
+
+        Nested BaseSettings subclasses (DatabaseSettings, KeycloakConfig, etc.)
+        read from os.environ only. This method ensures the parent's .env file
+        values are available there before nested models are constructed.
+        """
+        env_vars = super()._load_env_vars()
+        for key, value in env_vars.items():
+            if key and key not in os.environ:
+                os.environ[key] = str(value) if value is not None else ""
+        return env_vars
