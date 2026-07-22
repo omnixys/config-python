@@ -16,7 +16,7 @@ from omnixys_config.settings import (
     TopicMapping,
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     "AppSettings",
