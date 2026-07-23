@@ -1,3 +1,18 @@
+# [3.0.0](https://github.com/omnixys/config-python/compare/v2.0.4...v3.0.0) (2026-07-23)
+
+
+### Bug Fixes
+
+* **config:** add CacheSettings.password field and update default keycloak realm ([b0b4638](https://github.com/omnixys/config-python/commit/b0b4638bd2bc0b17c2fd29290781b0d0495a2670))
+* **config:** propagate .env values to nested BaseSettings subclasses ([710d430](https://github.com/omnixys/config-python/commit/710d430e3a0f940b12b3b2130af0e29235161894))
+* **config:** propagate .env values to os.environ for nested BaseSettings ([181d905](https://github.com/omnixys/config-python/commit/181d9050d9dd01df8320503e4d6ff2363ea39bc2))
+
+
+### Features
+
+* **config:** accept optional env_file in load_settings ([4589095](https://github.com/omnixys/config-python/commit/458909534b8f6a2c349d71dae80a13ea25759f8a))
+* **config:** add tempo_health_url and prometheus_health_url to ObservabilitySettings ([985014e](https://github.com/omnixys/config-python/commit/985014eed66a20eae104681f04a5be20c3f18dfd))
+
 ## [2.0.4](https://github.com/omnixys/config-python/compare/v2.0.3...v2.0.4) (2026-07-22)
 
 
