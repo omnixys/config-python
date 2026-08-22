@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-# ruff: noqa: D100, D101, D102, S104, S105
 from pathlib import Path
 from typing import Any
 
@@ -9,7 +8,20 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class DatabaseSettings(BaseSettings):
+class _SettingsBase(BaseSettings):
+    def __init__(self, **values: Any) -> None:
+        env_file = values.get("_env_file") or self.model_config.get("env_file")
+        if env_file:
+            env_path = Path(str(env_file))
+            if env_path.is_file():
+                load_dotenv(env_path, override=False)
+        for field_name, field_info in type(self).model_fields.items():
+            if field_name not in values and isinstance(field_info.default, BaseSettings):
+                values[field_name] = field_info.default.__class__()
+        super().__init__(**values)
+
+
+class DatabaseSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="database_")
     url: str = "postgresql+asyncpg://omnixys:omnixys@localhost:5432/omnixys"
     url_sync: str = "postgresql://omnixys:omnixys@localhost:5432/omnixys"
@@ -18,7 +30,7 @@ class DatabaseSettings(BaseSettings):
     echo: bool = False
 
 
-class KeycloakConfig(BaseSettings):
+class KeycloakConfig(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="keycloak_")
     url: str = "http://localhost:8080"
     realm: str = "omnixysu"
@@ -35,24 +47,24 @@ class KeycloakConfig(BaseSettings):
         return f"{self.issuer}/protocol/openid-connect/certs"
 
 
-class JwkConfig(BaseSettings):
+class JwkConfig(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="jwk_")
     keys: list[str] = Field(default_factory=list)
 
 
-class SessionConfig(BaseSettings):
+class SessionConfig(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="session_")
     ttl_ms: int = 3600000
 
 
-class RateLimitConfig(BaseSettings):
+class RateLimitConfig(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="rate_limit_")
     enabled: bool = True
     default_limit: int = 120
     default_window_ms: int = 60000
 
 
-class SecuritySettings(BaseSettings):
+class SecuritySettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="security_")
     permit_all_post_paths: list[str] = Field(default_factory=list)
     permit_all_get_paths: list[str] = Field(default_factory=list)
@@ -80,7 +92,7 @@ class SecuritySettings(BaseSettings):
     cors_max_age_seconds: int = 3600
 
 
-class TopicMapping(BaseSettings):
+class TopicMapping(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="topic_")
     delivery_status: str = "omnixys.delivery.status"
     conversation_created: str = "omnixys.conversation.created"
@@ -94,7 +106,7 @@ class TopicMapping(BaseSettings):
     outbox: str = "omnixys.outbox.event"
 
 
-class KafkaSettings(BaseSettings):
+class KafkaSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="kafka_")
     enabled: bool = True
     bootstrap_servers: str = "localhost:9092"
@@ -110,7 +122,7 @@ class KafkaSettings(BaseSettings):
     topics: TopicMapping = TopicMapping()
 
 
-class CacheSettings(BaseSettings):
+class CacheSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="cache_")
     url: str = "redis://localhost:6379/0"
     password: str = ""
@@ -121,7 +133,7 @@ class CacheSettings(BaseSettings):
     worker_poll_interval_ms: int = 5000
 
 
-class ObservabilitySettings(BaseSettings):
+class ObservabilitySettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="otel_")
     enabled: bool = True
     service_name: str = "omnixys"
@@ -136,7 +148,7 @@ class ObservabilitySettings(BaseSettings):
     prometheus_health_url: str = ""
 
 
-class StorageSettings(BaseSettings):
+class StorageSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_prefix="storage_")
     region: str = "us-east-1"
     endpoint: str = "http://localhost:9000"
@@ -148,7 +160,7 @@ class StorageSettings(BaseSettings):
     public_url: str = ""
 
 
-class CoreSettings(BaseSettings):
+class CoreSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
     service_name: str = "omnixys"
     environment: str = "local"
@@ -171,7 +183,7 @@ class CoreSettings(BaseSettings):
         return self.environment == "production"
 
 
-class AppSettings(BaseSettings):
+class AppSettings(_SettingsBase):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
     core: CoreSettings = CoreSettings()
     database: DatabaseSettings = DatabaseSettings()
@@ -182,14 +194,3 @@ class AppSettings(BaseSettings):
     cache: CacheSettings = CacheSettings()
     observability: ObservabilitySettings = ObservabilitySettings()
     storage: StorageSettings = StorageSettings()
-
-    def __init__(self, **values: Any) -> None:  # noqa: D107, ANN401
-        env_file = self.model_config.get("env_file")
-        if env_file:
-            env_path = Path(str(env_file))
-            if env_path.is_file():
-                load_dotenv(env_path, override=False)
-        for field_name, field_info in self.__class__.model_fields.items():
-            if field_name not in values and isinstance(field_info.default, BaseSettings):
-                values[field_name] = field_info.default.__class__()
-        super().__init__(**values)

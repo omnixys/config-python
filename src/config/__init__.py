@@ -1,4 +1,5 @@
-# ruff: noqa: D104
+"""Omnixys unified configuration package (pydantic-settings)."""
+
 from config.factories import get_settings, load_settings
 from config.settings import (
     AppSettings,

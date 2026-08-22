@@ -13,6 +13,43 @@
 #
 # For more information, visit <https://www.gnu.org/licenses/>.
 
-"""Shared test fixtures."""
+"""Shared fixtures: deterministic environment isolation for settings tests."""
 
 from __future__ import annotations
+
+import os
+
+import pytest
+
+_FLAT_KEYS = {
+    "service_name",
+    "environment",
+    "log_level",
+    "host",
+    "port",
+    "debug",
+    "internal_api_key",
+    "hot_reload",
+}
+
+_PREFIXES = (
+    "database_",
+    "keycloak_",
+    "jwk_",
+    "session_",
+    "rate_limit_",
+    "security_",
+    "topic_",
+    "kafka_",
+    "cache_",
+    "otel_",
+    "storage_",
+)
+
+
+@pytest.fixture(autouse=True)
+def clean_env(monkeypatch: pytest.MonkeyPatch) -> None:
+    for key in list(os.environ):
+        lower = key.lower()
+        if lower in _FLAT_KEYS or lower.startswith(_PREFIXES):
+            monkeypatch.delenv(key, raising=False)
