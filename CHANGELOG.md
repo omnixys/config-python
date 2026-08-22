@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/omnixys/config-python/compare/v3.0.0...v3.0.1) (2026-08-22)
+
+
+### Bug Fixes
+
+* **dir:** remove target dir ([8832be9](https://github.com/omnixys/config-python/commit/8832be9387eeda7a45d15ff5a7502988054f286a))
+
 # [3.0.0](https://github.com/omnixys/config-python/compare/v2.0.4...v3.0.0) (2026-07-23)
 
 
