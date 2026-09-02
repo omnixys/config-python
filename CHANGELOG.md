@@ -1,3 +1,32 @@
+# 🧾 Changelog
+
+All notable changes in this project will be documented in this file.
+
+
+## [3.0.2](https://github.com/omnixys/config-python/compare/v3.0.1...v3.0.2) (2026-09-02)
+
+### Ci
+
+* **Ci:** add setup-uv to release job for uv lock in prepare cmd ([](https://github.com/omnixys/config-python/commit/33d8ee781c909c2caeddfe5aad9565604be1245c))
+* **Ci:** bundle semantic-release tool install to fix conventional-changelog-writer ([](https://github.com/omnixys/config-python/commit/e791aea65d1c993cd5c8275ee1b8403fd19ef9bc))
+* **Ci:** pin conventional-changelog-conventionalcommits to v9 for release-notes-generator compat ([](https://github.com/omnixys/config-python/commit/ff47504d81c0fdde5f87bb624244165a7cbbc26b))
+* **Ci:** publish tagged release to PyPI ([](https://github.com/omnixys/config-python/commit/86cc1aa628822c6e7763dc4a1e254d99a38c9f0a))
+* **Ci:** remove stray comma from releaseBodyTemplate ([](https://github.com/omnixys/config-python/commit/9a48a07645d7f2d5e869c2fcb4426f0d155822fa))
+
+### Deps
+
+* **Deps:** update omnixys deps ([](https://github.com/omnixys/config-python/commit/23e87b8f5ec3b60339af81dd21112c5ea223fbc7))
+
+### Other
+
+* **Other:** ga ([](https://github.com/omnixys/config-python/commit/d11cd950a1e9b623e87c5e87b4f65694ae5448ad))
+* **Other:** Merge pull request #1 from omnixys/migration/uuid-v7 ([](https://github.com/omnixys/config-python/commit/dd1c26642d749dee3e172aef3cce0e714f5f9d1f)), closes [#1](https://github.com/omnixys/config-python/issues/1)
+
+### Packaging
+
+* **Packaging:** fix ruff lint and version metadata tests ([](https://github.com/omnixys/config-python/commit/30e8efecfcc15aa64494db30c2f6ab05e8d2dd90))
+* **Packaging:** move package version to pyproject.toml and align release workflow ([](https://github.com/omnixys/config-python/commit/02e57091eff9cd74b09af5e0ddfb5a1baf801169))
+
 ## [3.0.1](https://github.com/omnixys/config-python/compare/v3.0.0...v3.0.1) (2026-08-22)
 
 
