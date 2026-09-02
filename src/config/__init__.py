@@ -17,7 +17,6 @@ from config.settings import (
     TopicMapping,
 )
 
-
 __all__ = [
     "AppSettings",
     "CacheSettings",

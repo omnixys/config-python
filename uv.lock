@@ -151,6 +151,7 @@ wheels = [
 
 [[package]]
 name = "omnixys-config"
+version = "3.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
