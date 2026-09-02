@@ -1,6 +1,6 @@
 [project]
 name = "omnixys-config"
-dynamic = ["version"]
+version = "3.0.1"
 description = "Omnixys unified configuration package (pydantic-settings)"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
@@ -28,8 +28,6 @@ Repository = "https://github.com/omnixys/omnixys"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.version]
-path = "src/config/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/config"]
