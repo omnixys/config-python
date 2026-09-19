@@ -3,6 +3,12 @@
 All notable changes in this project will be documented in this file.
 
 
+## [3.0.3](https://github.com/omnixys/config-python/compare/v3.0.2...v3.0.3) (2026-09-19)
+
+### Deps
+
+* **Deps:** update omnixys deps ([](https://github.com/omnixys/config-python/commit/c6cc942def597f11a5dd547ea490ababd82aa100))
+
 ## [3.0.2](https://github.com/omnixys/config-python/compare/v3.0.1...v3.0.2) (2026-09-02)
 
 ### Ci
